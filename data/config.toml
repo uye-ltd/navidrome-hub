@@ -10,8 +10,8 @@ DataFolder = "./data"                    # Folder to store application data (DB)
 CacheFolder = "<DataFolder>/cache"       # Folder to store cache data (transcoding, images)
 LogLevel = "info"                        # Log level: error, warn, info, debug, trace
 LogFile = "./logs/log"                   # Path to log file; empty = log to stderr
-Address = "0.0.0.0"                      # Address the server binds to (IPv4, IPv6, or UNIX socket)
-BaseUrl = ""                             # Base URL when running behind a reverse proxy
+Address = "127.0.0.1"                    # Address the server binds to (IPv4, IPv6, or UNIX socket)
+BaseUrl = "https://navidrome.uye.rocks"  # Base URL when running behind a reverse proxy
 Port = 4533                              # HTTP port Navidrome listens on
 EnableInsightsCollector = false          # Allow anonymous data collection to help improve the project
 
@@ -22,7 +22,7 @@ EnableInsightsCollector = false          # Allow anonymous data collection to he
 Agents = "lastfm,spotify,deezer"                        # Comma-separated metadata agents for artist info/images
 AlbumPlayCountMode = "normalized"                       # How album play count is computed: "absolute" or "normalized" (divided by track count)
 AuthRequestLimit = 5                                    # Max login attempts per IP during AuthWindowLength; 0 = disabled
-AuthWindowLength = "20s"                                # Time window for the authentication rate limiter
+AuthWindowLength = "30s"                                # Time window for the authentication rate limiter
 AutoImportPlaylists = true                              # Auto-import .m3u playlists found in the music folder
 AutoTranscodeDownload = true                            # Use client's transcode config for downloads; false = send original file
 DefaultPlaylistPublicVisibility = false                 # Set imported playlists as public by default
@@ -92,13 +92,13 @@ LastFM.ScrobbleFirstArtistOnly = false                  # Scrobble only the firs
 ListenBrainz.BaseURL = "https://api.listenbrainz.org/1/" # ListenBrainz API base URL; override for self-hosted alternatives (e.g. Maloja)
 ListenBrainz.Enabled = true                             # Enable ListenBrainz integration for scrobbling
 
-LyricsPriority = ".lrc,.txt,embedded"                  # Order of sources to check for lyrics (file extensions or "embedded")
+LyricsPriority = ".lrc,.txt,embedded"                   # Order of sources to check for lyrics (file extensions or "embedded")
 MaxSidebarPlaylists = 100                               # Max playlists shown in the UI sidebar; large values may hurt UI performance
 
 MPVPath = ""                                            # Path to mpv executable for Jukebox mode; empty = search in PATH
 MPVCmdTemplate = "mpv --audio-device=%d --no-audio-display %f --input-ipc-server=%s" # Command template for invoking mpv in Jukebox mode
 
-# PasswordEncryptionKey — set via ND_PASSWORDENCRYPTIONKEY env var in .env
+# PasswordEncryptionKey                                 # set via ND_PASSWORDENCRYPTIONKEY env var in .env
 
 PID.Album = "musicbrainz_albumid|albumartistid,album,albumversion,releasedate" # Tags used to derive a stable Album ID
 PID.Track = "musicbrainz_trackid|albumid,discnumber,tracknumber,title"         # Tags used to derive a stable Track ID
@@ -115,7 +115,7 @@ PreferSortTags = false                                  # Use Sort_* tags (e.g. 
 
 Prometheus.Enabled = true                               # Expose a Prometheus metrics endpoint
 Prometheus.MetricsPath = "/metrics"                     # URL path for the Prometheus metrics endpoint
-# Prometheus.Password — set via ND_PROMETHEUS_PASSWORD env var in .env
+# Prometheus.Password                                   # set via ND_PROMETHEUS_PASSWORD env var in .env
 
 RecentlyAddedByModTime = false                          # Sort "Recently Added" by file modification time; false = use import time
 
@@ -143,10 +143,10 @@ Subsonic.LegacyClients = "DSub"                         # Comma-separated list o
 
 # Tags = []                                             # Custom tags to import from music files; see docs for structure
 
-# TLSCert — set via ND_TLSCERT env var in .env
-# TLSKey  — set via ND_TLSKEY env var in .env
+# TLSCert                                               # set via ND_TLSCERT env var in .env
+# TLSKey                                                # set via ND_TLSKEY env var in .env
 
-TranscodingCacheSize = "300MB"                          # Size of the transcoding cache; 0 = disabled
+TranscodingCacheSize = "1000MB"                         # Size of the transcoding cache; 0 = disabled
 
 UILoginBackgroundUrl = "/media/uyebar_bg.jpg"           # Custom background image URL for the login page; empty = random image from Unsplash
 UIWelcomeMessage = "Hey Man"                            # Message displayed on the login screen; empty = none
