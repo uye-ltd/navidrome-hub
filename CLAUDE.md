@@ -28,7 +28,7 @@ docker compose pull
 ## Repository Structure
 
 - `docker-compose.yaml` — service definitions (Navidrome and any supporting services)
-- `data/config.toml` — Navidrome configuration file (mounted into the container)
+- `data/navidrome.toml` — Navidrome configuration file (mounted into the container)
 - `.env` / `.env.example` — environment variables referenced in `docker-compose.yaml` (e.g. ports, paths, credentials)
 - `backups/` — backup storage directory
 - `logs/` — log output directory
@@ -37,7 +37,7 @@ docker compose pull
 
 The setup follows a standard Docker Compose pattern:
 - Environment variables in `.env` are substituted into `docker-compose.yaml`
-- `data/config.toml` is bind-mounted into the Navidrome container for persistent configuration
+- `data/navidrome.toml` is bind-mounted into the Navidrome container for persistent configuration
 - `backups/` and `logs/` are bind-mounted volumes for persistent data outside the container
 
 When editing `docker-compose.yaml`, keep secrets (passwords, API keys) in `.env`, not inline. Mirror any new `.env` variables into `.env.example` with placeholder values.
