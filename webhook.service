@@ -4,7 +4,8 @@ After=network.target
 
 [Service]
 EnvironmentFile=/home/rwrotson/navidrome-hub/.env
-ExecStart=/usr/bin/webhook -hooks /home/rwrotson/navidrome-hub/hooks.json -port 9000 -verbose
+ExecStartPre=/bin/sh -c 'envsubst < /home/rwrotson/navidrome-hub/hooks.json > /tmp/hooks.json'
+ExecStart=/usr/bin/webhook -hooks /tmp/hooks.json -port 9000 -verbose
 Restart=on-failure
 
 [Install]
