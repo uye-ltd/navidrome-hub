@@ -17,5 +17,4 @@ services:
       - "./data:/data"
       - "./logs:/logs"
       - "./backups:/backups"
-      - "./media:/media:ro"
       - "${NAVIDROME_MUSIC_PATH}:/music:ro"
