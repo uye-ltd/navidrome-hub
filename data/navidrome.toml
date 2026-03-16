@@ -7,7 +7,7 @@
 
 MusicFolder = "./music"                                         # Folder where your music library is stored
 DataFolder = "./data"                                           # Folder to store application data (DB)
-CacheFolder = "<DataFolder>/cache"                              # Folder to store cache data (transcoding, images)
+CacheFolder = "./data/cache"                                    # Folder to store cache data (transcoding, images)
 LogLevel = "info"                                               # Log level: error, warn, info, debug, trace
 LogFile = "./logs/log"                                          # Path to log file; empty = log to stderr
 Address = "127.0.0.1"                                           # Address the server binds to (IPv4, IPv6, or UNIX socket)
@@ -103,10 +103,10 @@ MPVCmdTemplate = "mpv --audio-device=%d --no-audio-display %f --input-ipc-server
 PID.Album = "musicbrainz_albumid|albumartistid,album,albumversion,releasedate" # Tags used to derive a stable Album ID
 PID.Track = "musicbrainz_trackid|albumid,discnumber,tracknumber,title"         # Tags used to derive a stable Track ID
 
-PlaylistsPath = "<MusicFolder>/playlists"                       # Restrict playlist import to these folders (relative to MusicFolder, colon-separated); empty = no restriction
+PlaylistsPath = "./music/playlists"                             # Restrict playlist import to these folders (relative to MusicFolder, colon-separated); empty = no restriction
         
 Plugins.Enabled = true                                          # Enable the plugin system
-Plugins.Folder = "<DataFolder>/plugins"                         # Folder where .ndp plugin files are stored
+Plugins.Folder = "./data/plugins"                               # Folder where .ndp plugin files are stored
 Plugins.AutoReload = true                                       # Auto-reload plugins when .ndp files change
 Plugins.LogLevel = ""                                           # Log level for plugins; empty = inherit Navidrome's LogLevel
 Plugins.CacheSize = "200MB"                                     # Size of the plugin compilation cache
