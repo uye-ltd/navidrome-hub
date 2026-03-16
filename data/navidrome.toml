@@ -74,7 +74,7 @@ IgnoredArticles = ""                                            # Articles ignor
 ImageCacheSize = "300MB"                                        # Size of the image/artwork cache; 0 = disabled
 
 Inspect.BacklogLimit = 100                                      # Max queued inspect requests before rejecting new ones
-Inspect.BacklogTimeout = "1m"                                   # How long a queued inspect request waits before timing out
+Inspect.BacklogTimeout = 60000000000                            # How long a queued inspect request waits before timing out (1m in nanoseconds)
 Inspect.Enabled = true                                          # Enable /inspect endpoints for file metadata debugging
 Inspect.MaxRequests = 1                                         # Max concurrent inspect requests
 
