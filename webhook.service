@@ -3,6 +3,7 @@ Description=GitHub Webhook Listener
 After=network.target
 
 [Service]
+User=rwrotson
 EnvironmentFile=/home/rwrotson/navidrome-hub/.env
 ExecStartPre=/bin/sh -c 'envsubst < /home/rwrotson/navidrome-hub/hooks.json > /tmp/hooks.json'
 ExecStart=/usr/bin/webhook -hooks /tmp/hooks.json -port 9000 -verbose
