@@ -10,7 +10,7 @@ DataFolder = "/data"                                            # Folder to stor
 CacheFolder = "/data/cache"                                     # Folder to store cache data (transcoding, images)
 LogLevel = "info"                                               # Log level: error, warn, info, debug, trace
 LogFile = "/logs/log"                                           # Path to log file; empty = log to stderr
-Address = "127.0.0.1"                                           # Address the server binds to (IPv4, IPv6, or UNIX socket)
+Address = "0.0.0.0"                                             # Address the server binds to (IPv4, IPv6, or UNIX socket)
 BaseUrl = "https://navidrome.uye.rocks"                         # Base URL when running behind a reverse proxy
 Port = 4533                                                     # HTTP port Navidrome listens on
 EnableInsightsCollector = false                                 # Allow anonymous data collection to help improve the project
