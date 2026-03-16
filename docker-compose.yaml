@@ -8,11 +8,11 @@ services:
     environment:
       - ND_CONFIGFILE=/data/navidrome.toml
       - ND_PASSWORDENCRYPTIONKEY=${ND_PASSWORDENCRYPTIONKEY}
-      - ND_LASTFM_APIKEY=${ND_LASTFM_APIKEY}
-      - ND_LASTFM_SECRET=${ND_LASTFM_SECRET}
-      - ND_PROMETHEUS_PASSWORD=${ND_PROMETHEUS_PASSWORD}
-      - ND_TLSCERT=${ND_TLSCERT}
-      - ND_TLSKEY=${ND_TLSKEY}
+      # - ND_LASTFM_APIKEY=${ND_LASTFM_APIKEY}
+      # - ND_LASTFM_SECRET=${ND_LASTFM_SECRET}
+      # - ND_PROMETHEUS_PASSWORD=${ND_PROMETHEUS_PASSWORD}
+      # - ND_TLSCERT=${ND_TLSCERT}
+      # - ND_TLSKEY=${ND_TLSKEY}
     volumes:
       - "./data:/data"
       - "./logs:/logs"
