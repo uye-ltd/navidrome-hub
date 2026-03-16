@@ -29,7 +29,7 @@ DefaultPlaylistPublicVisibility = false                         # Set imported p
 ArtistArtPriority = "artist.*, album/artist.*, external"        # Order to look for artist images
 
 Backup.Path = "./backups"                                       # Path to store backups; empty = backups disabled
-Backup.Schedule = 0 0,12 * * *                                  # Cron schedule for automatic backups; empty = disabled
+Backup.Schedule = "0 0,12 * * *"                                  # Cron schedule for automatic backups; empty = disabled
 Backup.Count = 3                                                # Number of backups to keep; 0 = disabled
 
 CoverArtPriority = "cover.*, folder.*, front.*, embedded, external" # Order to look for cover art; "embedded" reads from audio file tags
