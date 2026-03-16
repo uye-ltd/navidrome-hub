@@ -96,3 +96,4 @@ Repo → Settings → Webhooks → Add webhook:
 3. On server: `journalctl -u webhook -f`
 4. `docker compose ps` should show the updated container
 5. 
+6. 
