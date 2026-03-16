@@ -1,0 +1,153 @@
+# Navidrome configuration file
+# Full reference: https://www.navidrome.org/docs/usage/configuration/options/
+
+# =============================================================================
+# Basic Configuration
+# =============================================================================
+
+MusicFolder = "./music"                  # Folder where your music library is stored
+DataFolder = "./data"                    # Folder to store application data (DB)
+CacheFolder = "<DataFolder>/cache"       # Folder to store cache data (transcoding, images)
+LogLevel = "info"                        # Log level: error, warn, info, debug, trace
+LogFile = "./logs/log"                   # Path to log file; empty = log to stderr
+Address = "0.0.0.0"                      # Address the server binds to (IPv4, IPv6, or UNIX socket)
+BaseUrl = ""                             # Base URL when running behind a reverse proxy
+Port = 4533                              # HTTP port Navidrome listens on
+EnableInsightsCollector = false          # Allow anonymous data collection to help improve the project
+
+# =============================================================================
+# Advanced Configuration
+# =============================================================================
+
+Agents = "lastfm,spotify,deezer"                        # Comma-separated metadata agents for artist info/images
+AlbumPlayCountMode = "normalized"                       # How album play count is computed: "absolute" or "normalized" (divided by track count)
+AuthRequestLimit = 5                                    # Max login attempts per IP during AuthWindowLength; 0 = disabled
+AuthWindowLength = "20s"                                # Time window for the authentication rate limiter
+AutoImportPlaylists = true                              # Auto-import .m3u playlists found in the music folder
+AutoTranscodeDownload = true                            # Use client's transcode config for downloads; false = send original file
+DefaultPlaylistPublicVisibility = false                 # Set imported playlists as public by default
+ArtistArtPriority = "artist.*, album/artist.*, external" # Order to look for artist images
+
+Backup.Path = "./backups"                               # Path to store backups; empty = backups disabled
+Backup.Schedule = 0 0,12 * * *                          # Cron schedule for automatic backups; empty = disabled
+Backup.Count = 3                                        # Number of backups to keep; 0 = disabled
+
+CoverArtPriority = "cover.*, folder.*, front.*, embedded, external" # Order to look for cover art; "embedded" reads from audio file tags
+CoverJpegQuality = 100                                   # JPEG quality (0–100) for resized cover art images
+
+Deezer.Enabled = true                                   # Enable Deezer integration for artist images
+Deezer.Language = "en"                                  # Language used by the Deezer integration
+
+DefaultDownsamplingFormat = "opus"                      # Format to transcode to when a client requests downsampling
+DefaultLanguage = "en"                                  # Default UI language for new browser sessions
+DefaultTheme = "Dark"                                   # Default UI theme for new browser sessions
+DefaultShareExpiration = "8760h"                        # Default expiration for new public share links (8760h = 1 year)
+DefaultDownloadableShare = true                         # Whether newly created shares are downloadable by default
+DefaultUIVolume = 80                                    # Default player volume (0–100) for new browser sessions
+
+EnableArtworkPrecache = true                            # Pre-cache artwork images for newly added music
+EnableCoverAnimation = false                            # Animate (rotate) album cover in the player UI
+EnableDownloads = true                                  # Show download option in the UI
+EnableExternalServices = true                           # Enable all external integrations; false disables everything including login backgrounds
+EnableFavourites = true                                 # Enable heart/loved toggling for songs, albums, and artists
+EnableGravatar = false                                  # Use Gravatar as user profile image (requires user email to be set)
+EnableLogRedacting = true                               # Redact sensitive info (tokens, passwords) in logs
+EnableMediaFileCoverArt = true                          # Return per-song cover art; false = always return album cover
+EnableNowPlaying = true                                 # Track and display what users are currently listening to
+EnableReplayGain = true                                 # Show ReplayGain options in the UI
+EnableScrobbleHistory = true                            # Store scrobble history
+EnableSharing = true                                    # Enable the sharing feature (public links)
+EnableStarRating = false                                # Enable 5-star ratings in the UI
+EnableTranscodingCancellation = true                    # Stop transcoding when a client disconnects mid-stream
+EnableTranscodingConfig = true                          # Allow transcoding configuration in the UI
+EnableUserEditing = true                                # Allow regular users to edit their profile and change password
+
+ExtAuth.TrustedSources = ""                             # Comma-separated IP CIDRs allowed to use reverse proxy auth; empty = deny all
+ExtAuth.UserHeader = "Remote-User"                      # HTTP header containing the username from an authenticating proxy
+
+FFmpegPath = ""                                         # Path to ffmpeg executable; empty = auto-detect
+GATrackingID = ""                                       # Google Analytics tracking ID (format: UA-XXXXXXXX); empty = disabled
+
+HTTPHeaders.FrameOptions = "DENY"                       # Value for the X-Frame-Options response header
+
+IgnoredArticles = ""                                    # Articles ignored when sorting/indexing artist names
+ImageCacheSize = "300MB"                                # Size of the image/artwork cache; 0 = disabled
+
+Inspect.BacklogLimit = 100                              # Max queued inspect requests before rejecting new ones
+Inspect.BacklogTimeout = "1m"                           # How long a queued inspect request waits before timing out
+Inspect.Enabled = true                                  # Enable /inspect endpoints for file metadata debugging
+Inspect.MaxRequests = 1                                 # Max concurrent inspect requests
+
+Jukebox.Enabled = false                                 # Enable Jukebox mode (play audio on the server's hardware)
+Jukebox.AdminOnly = true                                # Restrict Jukebox control to admin users only
+Jukebox.Default = ""                                    # Default audio device for Jukebox mode; empty = auto-detect
+# Jukebox.Devices = []                                  # Explicit list of audio devices; auto-detected when empty
+
+LastFM.Enabled = true                                   # Enable Last.fm integration for scrobbling and metadata
+# LastFM.ApiKey  — set via ND_LASTFM_APIKEY env var in .env
+# LastFM.Secret  — set via ND_LASTFM_SECRET env var in .env
+LastFM.Language = "en"                                  # Two-letter language code for Last.fm biographies
+LastFM.ScrobbleFirstArtistOnly = false                  # Scrobble only the first artist for multi-artist tracks
+
+ListenBrainz.BaseURL = "https://api.listenbrainz.org/1/" # ListenBrainz API base URL; override for self-hosted alternatives (e.g. Maloja)
+ListenBrainz.Enabled = true                             # Enable ListenBrainz integration for scrobbling
+
+LyricsPriority = ".lrc,.txt,embedded"                  # Order of sources to check for lyrics (file extensions or "embedded")
+MaxSidebarPlaylists = 100                               # Max playlists shown in the UI sidebar; large values may hurt UI performance
+
+MPVPath = ""                                            # Path to mpv executable for Jukebox mode; empty = search in PATH
+MPVCmdTemplate = "mpv --audio-device=%d --no-audio-display %f --input-ipc-server=%s" # Command template for invoking mpv in Jukebox mode
+
+# PasswordEncryptionKey — set via ND_PASSWORDENCRYPTIONKEY env var in .env
+
+PID.Album = "musicbrainz_albumid|albumartistid,album,albumversion,releasedate" # Tags used to derive a stable Album ID
+PID.Track = "musicbrainz_trackid|albumid,discnumber,tracknumber,title"         # Tags used to derive a stable Track ID
+
+PlaylistsPath = "<MusicFolder>/playlists"               # Restrict playlist import to these folders (relative to MusicFolder, colon-separated); empty = no restriction
+
+Plugins.Enabled = true                                  # Enable the plugin system
+Plugins.Folder = "<DataFolder>/plugins"                 # Folder where .ndp plugin files are stored
+Plugins.AutoReload = true                               # Auto-reload plugins when .ndp files change
+Plugins.LogLevel = ""                                   # Log level for plugins; empty = inherit Navidrome's LogLevel
+Plugins.CacheSize = "200MB"                             # Size of the plugin compilation cache
+
+PreferSortTags = false                                  # Use Sort_* tags (e.g. SortAlbumArtist) for UI column sorting
+
+Prometheus.Enabled = true                               # Expose a Prometheus metrics endpoint
+Prometheus.MetricsPath = "/metrics"                     # URL path for the Prometheus metrics endpoint
+# Prometheus.Password — set via ND_PROMETHEUS_PASSWORD env var in .env
+
+RecentlyAddedByModTime = false                          # Sort "Recently Added" by file modification time; false = use import time
+
+Scanner.Enabled = true                                  # Enable automatic music library scanning
+Scanner.Schedule = "0"                                  # Cron schedule for automatic scans; "0" = disabled
+Scanner.WatcherWait = "5s"                              # Delay after a file change before triggering a scan (avoids scanning incomplete files)
+Scanner.ScanOnStartup = true                            # Scan the music library on server startup
+Scanner.ArtistJoiner = " • "                            # Separator string used when displaying multiple artists
+Scanner.FollowSymlinks = true                           # Follow symbolic links when scanning directories
+Scanner.PurgeMissing = "never"                          # When to purge missing files from the DB: "never", "always", or "full" (only after a full scan)
+
+SearchFullString = false                                # Match search queries anywhere in a field, not just at word boundaries (useful for CJK languages)
+SessionTimeout = "48h"                                  # How long before an idle web UI session is closed
+ShareURL = ""                                           # Base URL for shared links; useful when the server address is not publicly reachable
+SmartPlaylistRefreshDelay = "5s"                        # How often Smart Playlists are refreshed
+
+Spotify.ID = ""                                         # Spotify Client ID; required for artist images via Spotify
+Spotify.Secret = ""                                     # Spotify Client Secret; required for artist images via Spotify
+
+Subsonic.AppendSubtitle = true                          # Append the subtitle tag to song titles in Subsonic API responses
+Subsonic.ArtistParticipations = false                   # Include albums where the artist participates (e.g. VA compilations) in artist album lists
+Subsonic.DefaultReportRealPath = false                  # Report real file paths in the API (security risk; disabled by default)
+Subsonic.EnableAverageRating = true                     # Include averageRating in Subsonic API responses
+Subsonic.LegacyClients = "DSub"                         # Comma-separated list of clients that don't support OpenSubsonic API improvements
+
+# Tags = []                                             # Custom tags to import from music files; see docs for structure
+
+# TLSCert — set via ND_TLSCERT env var in .env
+# TLSKey  — set via ND_TLSKEY env var in .env
+
+TranscodingCacheSize = "300MB"                          # Size of the transcoding cache; 0 = disabled
+
+UILoginBackgroundUrl = "/media/uyebar_bg.jpg"           # Custom background image URL for the login page; empty = random image from Unsplash
+UIWelcomeMessage = "Hey Man"                            # Message displayed on the login screen; empty = none
+UnixSocketPerm = "0660"                                 # File permissions for the UNIX socket file (when Address is a socket path)

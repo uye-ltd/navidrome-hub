@@ -1,0 +1,17 @@
+[
+  {
+    "id": "deploy",
+    "execute-command": "{{ env.NAVIDROME_DEPLOY_DIR }}/deploy.sh",
+    "command-working-directory": "{{ env.NAVIDROME_DEPLOY_DIR }}",
+    "trigger-rule": {
+      "match": {
+        "type": "payload-hmac-sha256",
+        "secret": "{{ env.WEBHOOK_SECRET }}",
+        "parameter": {
+          "source": "header",
+          "name": "X-Hub-Signature-256"
+        }
+      }
+    }
+  }
+]
