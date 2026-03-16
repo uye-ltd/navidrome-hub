@@ -58,23 +58,14 @@ git clone https://github.com/<org>/navidrome-hub /home/rwrotson/navidrome-hub
 sudo apt install webhook
 ```
 
-**3. Create `/etc/systemd/system/webhook.service`**
-```ini
-[Unit]
-Description=GitHub Webhook Listener
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/webhook -hooks ${NAVIDROME_DEPLOY_DIR}/hooks.json -port 9000 -verbose
-Restart=always
-User=${NAVIDROME_DEPLOY_USER}
-Environment=WEBHOOK_SECRET=<your-secret>
-Environment=NAVIDROME_DEPLOY_DIR=/home/rwrotson/navidrome-hub
-Environment=NAVIDROME_DEPLOY_USER=rwrotson
-
-[Install]
-WantedBy=multi-user.target
+**3. Install the systemd unit from the repo**
+```bash
+sudo cp /home/rwrotson/navidrome-hub/webhook.service /etc/systemd/system/webhook.service
+sudo systemctl daemon-reload
 ```
+
+`webhook.service` loads `.env` via `EnvironmentFile=`, so `WEBHOOK_SECRET` (and other
+variables) are available to the webhook binary without hardcoding them in the unit.
 
 **4. Enable and start**
 ```bash
@@ -86,7 +77,7 @@ sudo systemctl enable --now webhook
 Repo → Settings → Webhooks → Add webhook:
 - **Payload URL**: `http://<server-ip>:9000/hooks/deploy`
 - **Content type**: `application/json`
-- **Secret**: same value as `WEBHOOK_SECRET` in the systemd unit
+- **Secret**: same value as `WEBHOOK_SECRET` in `.env`
 - **Events**: Just the push event
 
 ### Verification
@@ -95,5 +86,3 @@ Repo → Settings → Webhooks → Add webhook:
 2. GitHub → Settings → Webhooks → Recent Deliveries — should show `200`
 3. On server: `journalctl -u webhook -f`
 4. `docker compose ps` should show the updated container
-5. 
-6. 
