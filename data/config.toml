@@ -148,6 +148,6 @@ Subsonic.LegacyClients = "DSub"                         # Comma-separated list o
 
 TranscodingCacheSize = "1000MB"                         # Size of the transcoding cache; 0 = disabled
 
-UILoginBackgroundUrl = "/media/uyebar_bg.jpg"           # Custom background image URL for the login page; empty = random image from Unsplash
+UILoginBackgroundUrl = "./media/uyebar_bg.jpg"           # Custom background image URL for the login page; empty = random image from Unsplash
 UIWelcomeMessage = "Hey Man"                            # Message displayed on the login screen; empty = none
 UnixSocketPerm = "0660"                                 # File permissions for the UNIX socket file (when Address is a socket path)
