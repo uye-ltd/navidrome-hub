@@ -10,6 +10,34 @@ Docker Compose configuration for the Navidrome UYE media server.
    docker compose up -d
    ```
 
+## Reverse Proxy (SSL Termination)
+
+Navidrome runs plain HTTP inside the container. SSL should be terminated at the reverse proxy.
+
+Set `BaseUrl` in `data/config.toml` to your public HTTPS URL:
+
+```toml
+BaseUrl = "https://music.yourdomain.com"
+```
+
+Configure your reverse proxy to forward to `http://<host>:4533` and pass these headers:
+
+```
+X-Forwarded-For
+X-Forwarded-Proto: https
+X-Real-IP
+Host
+```
+
+To prevent direct access to Navidrome (bypassing the proxy), restrict the host binding in `docker-compose.yaml`:
+
+```yaml
+ports:
+  - "127.0.0.1:4533:4533"
+```
+
+`TLSCert`/`TLSKey` should remain unset — those are only for running Navidrome with direct TLS.
+
 ## Auto-Deploy via Webhook
 
 On every push to `main`, GitHub sends a signed POST request to the server, which pulls the latest code and restarts the stack.
