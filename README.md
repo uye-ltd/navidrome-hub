@@ -85,4 +85,4 @@ Repo → Settings → Webhooks → Add webhook:
 1. Push a commit to `main`
 2. GitHub → Settings → Webhooks → Recent Deliveries — should show `200`
 3. On server: `journalctl -u webhook -f`
-4. `docker compose ps` should show the updated container
+4. `docker compose ps` should show the updated container 
