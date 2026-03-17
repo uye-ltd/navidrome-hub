@@ -34,6 +34,8 @@ docker compose pull
 - `logs/` — log output directory
 - `static/favicons/` — custom favicon files served by Caddy (intercepted before reaching Navidrome)
 - `Caddyfile` — Caddy reverse proxy configuration; must be applied manually on the server at `/etc/caddy/Caddyfile`
+- `entrypoint.sh` — fixed script called by the webhook daemon; does `git pull` then `exec`s into `deploy.sh`
+- `deploy.sh` — main deploy script (runs docker compose, creates symlinks, etc.); always executed at its latest version because `entrypoint.sh` pulls first
 
 ## Architecture
 
@@ -49,3 +51,9 @@ sudo systemctl reload caddy
 ```
 
 When editing `docker-compose.yaml`, keep secrets (passwords, API keys) in `.env`, not inline. Mirror any new `.env` variables into `.env.example` with placeholder values.
+
+`hooks.json` is pre-processed via `envsubst` at webhook service startup and written to `/tmp/hooks.json`. After changing `hooks.json`, restart the webhook service on the server for changes to take effect:
+
+```bash
+sudo systemctl restart webhook
+```

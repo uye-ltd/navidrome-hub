@@ -1,7 +1,7 @@
 [
   {
     "id": "deploy",
-    "execute-command": "${NAVIDROME_DEPLOY_DIR}/deploy.sh",
+    "execute-command": "${NAVIDROME_DEPLOY_DIR}/entrypoint.sh",
     "command-working-directory": "${NAVIDROME_DEPLOY_DIR}",
     "trigger-rule": {
       "match": {

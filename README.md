@@ -43,8 +43,10 @@ ports:
 On every push to `main`, GitHub sends a signed POST request to the server, which pulls the latest code and restarts the stack.
 
 ```
-GitHub push → POST /hooks/deploy → deploy.sh → git pull + docker compose up -d
+GitHub push → POST /hooks/deploy → entrypoint.sh → git pull → deploy.sh → docker compose up -d
 ```
+
+`entrypoint.sh` is the fixed script called by the webhook. It pulls the latest code first, then `exec`s into `deploy.sh`, ensuring the always-current version of `deploy.sh` runs on every deploy. **Do not add deploy logic to `entrypoint.sh`** — keep it minimal so it rarely needs to change.
 
 ### Server-side setup (one-time)
 
