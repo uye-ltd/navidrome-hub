@@ -9,4 +9,6 @@ docker compose pull
 docker compose up -d
 docker compose restart navidrome
 
+ln -sfn "${NAVIDROME_DEPLOY_DIR}/static/favicons" "${NAVIDROME_DEPLOY_DIR}/static/app"
+
 echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] deploy finished"
