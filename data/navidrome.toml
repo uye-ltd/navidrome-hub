@@ -40,7 +40,7 @@ Deezer.Language = "en"                                          # Language used 
 
 DefaultDownsamplingFormat = "opus"                              # Format to transcode to when a client requests downsampling
 DefaultLanguage = "en"                                          # Default UI language for new browser sessions
-DefaultTheme = "Dark"                                           # Default UI theme for new browser sessions
+DefaultTheme = "AMusic"                                           # Default UI theme for new browser sessions
 DefaultShareExpiration = "8760h"                                # Default expiration for new public share links (8760h = 1 year)
 DefaultDownloadableShare = true                                 # Whether newly created shares are downloadable by default
 DefaultUIVolume = 80                                            # Default player volume (0–100) for new browser sessions
