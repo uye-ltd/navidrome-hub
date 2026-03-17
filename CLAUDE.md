@@ -32,6 +32,8 @@ docker compose pull
 - `.env` / `.env.example` — environment variables referenced in `docker-compose.yaml` (e.g. ports, paths, credentials)
 - `backups/` — backup storage directory
 - `logs/` — log output directory
+- `static/favicons/` — custom favicon files served by Caddy (intercepted before reaching Navidrome)
+- `Caddyfile` — Caddy reverse proxy configuration; must be applied manually on the server at `/etc/caddy/Caddyfile`
 
 ## Architecture
 
@@ -39,5 +41,11 @@ The setup follows a standard Docker Compose pattern:
 - Environment variables in `.env` are substituted into `docker-compose.yaml`
 - `data/navidrome.toml` is bind-mounted into the Navidrome container for persistent configuration
 - `backups/` and `logs/` are bind-mounted volumes for persistent data outside the container
+
+Caddy sits in front of Navidrome at `navidrome.uye.rocks`. Requests to `/app/favicon*`, `/app/android-chrome*`, `/app/apple-touch-icon*`, `/app/mstile*`, `/app/safari-pinned-tab.svg`, and `/app/browserconfig.xml` are intercepted by Caddy and served from `static/favicons/` on the host, bypassing the Navidrome container entirely. After updating `Caddyfile` or `static/favicons/`, reload Caddy on the server:
+
+```bash
+sudo systemctl reload caddy
+```
 
 When editing `docker-compose.yaml`, keep secrets (passwords, API keys) in `.env`, not inline. Mirror any new `.env` variables into `.env.example` with placeholder values.
