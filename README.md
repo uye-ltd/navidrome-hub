@@ -80,19 +80,24 @@ from the Navidrome container.
 e.g.:
 ```caddy
 navidrome.uye.rocks {
-    @favicons path /app/favicon*
-    handle @favicons {
-        uri strip_prefix /app
-        root * /home/rwrotson/navidrome-hub/static/favicons
-        file_server
-    }
-
-    @staticimages path /static/images_/*
-    handle @staticimages {
+    @appstatic {                                                                      
+      path /app/*                                                                   
+      file {                                                                        
+          root /home/rwrotson/navidrome-hub/static
+          try_files {path}                                                          
+      }                   
+    }    
+    handle @appstatic {
+        root * /home/rwrotson/navidrome-hub/static
+        file_server                               
+    }                                                                                 
+                                                                                      
+    @staticimages path /static/images_/*                                              
+    handle @staticimages {                                                            
         root * /home/rwrotson/navidrome-hub
-        file_server
-    }
-
+        file_server                        
+    }              
+     
     reverse_proxy localhost:4533
 }
 ```
