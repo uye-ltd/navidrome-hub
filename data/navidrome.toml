@@ -125,7 +125,7 @@ Scanner.WatcherWait = "5s"                                      # Delay after a 
 Scanner.ScanOnStartup = true                                    # Scan the music library on server startup
 Scanner.ArtistJoiner = " • "                                    # Separator string used when displaying multiple artists
 Scanner.FollowSymlinks = true                                   # Follow symbolic links when scanning directories
-Scanner.PurgeMissing = "never"                                  # When to purge missing files from the DB: "never", "always", or "full" (only after a full scan)
+Scanner.PurgeMissing = "full"                                  # When to purge missing files from the DB: "never", "always", or "full" (only after a full scan)
         
 SearchFullString = false                                        # Match search queries anywhere in a field, not just at word boundaries (useful for CJK languages)
 SessionTimeout = "48h"                                          # How long before an idle web UI session is closed
